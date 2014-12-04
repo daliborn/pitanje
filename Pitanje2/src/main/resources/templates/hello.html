@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Question</title>
+</head>
+
+<body>
+	<h1>Question!</h1>
+
+	<form action="pitanje" method="POST">
+		<input type="text" name="question"> <br>
+		<br> <input type="submit" value="Submit">
+	</form>
+	
+	{{#questions}}
+	 <ul>
+  		<li>{{question}}</li>
+	</ul> 
+	{{/questions}}
+</body>
+
+</html>
+
+
