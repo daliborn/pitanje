@@ -4,7 +4,6 @@
 	<groupId>daliborn.info.frame</groupId>
 	<artifactId>Pitanje2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<dependencies>
 		<dependency>

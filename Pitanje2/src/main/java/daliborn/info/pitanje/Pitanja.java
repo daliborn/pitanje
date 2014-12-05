@@ -46,8 +46,11 @@ public class Pitanja {
         }, new MustacheTemplateEngine());
 
 
-        get("/hello", "application/json", (request, response) -> {
-            return new Question("Hello World");
+        get("/pitanje/all", "application/json", (request, response) -> {
+        	List<Question> questions = questService.allQuestions();
+        	map.clear();
+			map.put("questions", questions);
+            return map;
         }, jsonTransformer);
 
     }
