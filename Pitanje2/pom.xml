@@ -68,7 +68,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>daliborn.info.pitanja.Pitanja</mainClass>
+							<mainClass>daliborn.info.pitanje.Pitanja</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
