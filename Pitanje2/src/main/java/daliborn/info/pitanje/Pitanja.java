@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import spark.ModelAndView;
-import spark.Session;
 import spark.template.mustache.MustacheTemplateEngine;
 import daliborn.info.pitanje.domain.Question;
 import daliborn.info.pitanje.service.JsonTransformer;
@@ -27,11 +26,20 @@ public class Pitanja {
         staticFileLocation("/public");
         
         get("/", (rq, rs) -> {
-        	Session session = rq.session();
+        	//Session session = rq.session();
     		List<Question> questions = questService.allQuestions();
     		
     		map.put("questions", questions);
         	return new ModelAndView(map, "index.html");
+        }, new MustacheTemplateEngine());
+        
+        get("/id/:id", (request, response) -> {
+            String id = request.params(":id");
+            Question question = questService.get(Integer.parseInt(id));
+
+            Map<String,Question> mapa = new HashMap<>();
+            mapa.put("question", question);
+        	return new ModelAndView(mapa, "question.html");
         }, new MustacheTemplateEngine());
         
         post("/pitanje", (request, response) -> {

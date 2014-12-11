@@ -24,9 +24,15 @@ public class QuestionServiceImpl implements QuestionService {
 
 
 	@Override
-	public Question get(String params) {
-		// TODO Auto-generated method stub
-		return null;
+	public Question get(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        Question question = (Question) session.load(Question.class, id);
+
+        session.getTransaction().commit();
+		return question;
 	}
 
 	@Override
