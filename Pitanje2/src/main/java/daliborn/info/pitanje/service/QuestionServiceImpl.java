@@ -1,6 +1,5 @@
 package daliborn.info.pitanje.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -48,12 +47,18 @@ public class QuestionServiceImpl implements QuestionService {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Question> allQuestions() {
-		List<Question> list = new ArrayList<Question>();
-		list.add(new Question("prvo"));
-		list.add(new Question("drugo"));
-		list.add(new Question("trece"));
+		
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+
+        List<Question> list = session.createQuery("from QUESTION").list();
+
+        session.getTransaction().commit();
+
 		return list;
 	}
 

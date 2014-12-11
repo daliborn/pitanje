@@ -20,17 +20,15 @@ public class Pitanja {
 
 	public static void main(String[] args) {
 		QuestionService questService = new QuestionServiceImpl ();
-		JsonTransformer jsonTransformer = new JsonTransformer();
-		
+		JsonTransformer jsonTransformer = new JsonTransformer();		
 		Map<String,List<Question>> map = new HashMap<>();
         
         staticFileLocation("/public");
         
         get("/", (rq, rs) -> {
-        	
-        	List<Question> questions = questService.allQuestions();
-        	
-			map.put("questions", questions);
+    		List<Question> questions = questService.allQuestions();
+    		
+    		map.put("questions", questions);
 
         	return new ModelAndView(map, "hello.html");
         }, new MustacheTemplateEngine());
@@ -41,13 +39,17 @@ public class Pitanja {
 
                 Question question = new Question(questionArg);
                 questService.create(question);
+                
+        		List<Question> questions = questService.allQuestions();
+        		
+        		map.put("questions", questions);
                 response.status(201); 
 				return new ModelAndView(map, "hello.html");
         }, new MustacheTemplateEngine());
 
 
         get("/pitanje/all", "application/json", (request, response) -> {
-        	List<Question> questions = questService.allQuestions();
+    		List<Question> questions = questService.allQuestions();
         	map.clear();
 			map.put("questions", questions);
             return map;
