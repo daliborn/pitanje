@@ -12,5 +12,6 @@
 			<property name="hbm2ddl.auto">update</property>
         	<property name="hibernate.show_sql">true</property>
 			<mapping class="daliborn.info.pitanje.domain.Question"/>
+			<mapping class="daliborn.info.pitanje.domain.Response"/>
 	</session-factory>
 </hibernate-configuration>
